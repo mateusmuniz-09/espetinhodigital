@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título da prévia -->
+    <meta property="og:title" content="BigBurguer - O Melhor Hambúrguer da Cidade 🍔🔥">
+
+    <!-- Descrição curta -->
+    <meta property="og:description" content="Confira nosso cardápio online e peça já o seu lanche delicioso! 😋">
+
+    <!-- URL da página -->
+    <meta property="og:url" content="https://cardapiodigitalburguer.netlify.app/">
+
+    <!-- Imagem da prévia (deve ser um link absoluto!) -->
+    <meta property="og:image" content="https://cardapiodigitalburguer.netlify.app/img/logo.png">
+
+    <!-- Tipo de conteúdo -->
+    <meta property="og:type" content="https://cardapiodigitalburguer.netlify.app/img/logo.png">
+
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="stylesheet" href="assets/style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- FIM BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Espetinho Digital</title>
+</head>
+
+<body>
+
+    <!---------------INICIO DO HEADER -------------->
+
+    <header>
+        <div class="btn-abrir-menu" id="btn-menu">
+        </div>
+        <div class="logo-tipo">
+
+            <img src="assets/img/logo.jpg" alt="">
+        </div>
+
+        <nav class="menu-desktop">
+
+            <ul>
+                <li><a href="#" onclick="mostrarSecao('hamburguer')">Espetos</a></li>
+                <li><a href="#" onclick="mostrarSecao('especiais')">Espetos Especiais</a></li>
+                <li><a href="#" onclick="mostrarSecao('petiscos')">Acompanhametos</a></li>
+                <li><a href="#" onclick="mostrarSecao('petiscos')">Petiscos</a></li>
+                <li><a href="#" onclick="mostrarSecao('bebidas')">Bebidas</a></li>
+                <li><a href="#" onclick="mostrarSecao('sucos')">Sucos</a></li>
+                <li><a href="#" onclick="mostrarSecao('cervejas')">Cervejas</a></li>
+            </ul>
+
+        </nav>
+        <div class="overlay-menu" id="overlay-menu"></div>
+    </header>
+    <!---------------FIM DO HEADER -------------->
+
+    <div id="informativo">
+        <div>
+            <h2>Borcelle Espetaria</h2>
+            <p id="tag-mapa"><i class="fas fa-motorcycle"></i> 20 - 50min <span><i class="bi bi-geo-alt-fill"></i><a
+                        href="https://www.google.com/maps/place/4%C2%B009'06.6%22S+40%C2%B048'06.9%22W/@-4.1518204,-40.802566,180m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d-4.1518217!4d-40.8019223?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank">Ver no mapa</a></span></p>
+            <p class="cor-ponto"><i id="cor-icone" class="fas fa-circle"></i> <span class="funcionamento"></span></p>
+        </div>
+        <div class="sociais-cabecalho">
+            <button class="btd-footer"> <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook"></i></a> </button>
+            <button class="btd-footer"> <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a> </button>
+
+            <button class="btd-footer"> <a href="https://wa.me/5588981252883?text=Olá,%20preciso%20de%20informações."
+                    target="_blank"><i class="bi bi-whatsapp"></i></a></button>
+        </div>
+
+
+    </div>
+    <!---------------MENU FIXO -------------->
+    <div class="menu-fixo">
+        <div>
+        <button onclick="mostrarSecao('espetos')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="M256.67-40v-166.67h-43.34q-38.66 0-66-27.33Q120-261.33 120-300.33t27.33-66q27.34-27 66-27h43.34v-53.34H120v-186.66h136.67v-53.34h-43.34q-38.66 0-66-27.33Q120-741.33 120-780.33t27.33-66q27.34-27 66-27h43.34V-920h46.66v46.67h43.34q39.2 0 66.26 27.06Q440-819.2 440-780q0 38.67-27.07 66-27.06 27.33-66.26 27.33h-43.34v53.34H440v186.66H303.33v53.34h43.34q39.2 0 66.26 27.06Q440-339.2 440-300q0 38.67-27.07 66-27.06 27.33-66.26 27.33h-43.34V-40h-46.66Zm400 0v-166.67h-43.34q-38.66 0-66-27.33Q520-261.33 520-300.33t27.33-66q27.34-27 66-27h43.34v-53.34H520v-186.66h136.67v-53.34h-43.34q-38.66 0-66-27.33Q520-741.33 520-780.33t27.33-66q27.34-27 66-27h43.34V-920h46.66v46.67h43.34q39.2 0 66.26 27.06Q840-819.2 840-780q0 38.67-27.07 66-27.06 27.33-66.26 27.33h-43.34v53.34H840v186.66H703.33v53.34h43.34q39.2 0 66.26 27.06Q840-339.2 840-300q0 38.67-27.07 66-27.06 27.33-66.26 27.33h-43.34V-40h-46.66ZM213.33-753.33h133.34q11.33 0 19-8 7.66-8 7.66-18.67 0-11.33-7.66-19-7.67-7.67-19-7.67H213.33q-10.66 0-18.66 7.67t-8 18.67q0 11 8 19t18.66 8Zm400 0h133.34q11.33 0 19-8 7.66-8 7.66-18.67 0-11.33-7.66-19-7.67-7.67-19-7.67H613.33q-10.66 0-18.66 7.67t-8 18.67q0 11 8 19t18.66 8Zm-426.66 240h186.66v-53.34H186.67v53.34Zm400 0h186.66v-53.34H586.67v53.34Zm-373.34 240h133.34q11.33 0 19-8 7.66-8 7.66-18.67 0-11.33-7.66-19-7.67-7.67-19-7.67H213.33q-10.66 0-18.66 7.67t-8 18.67q0 11 8 19t18.66 8Zm400 0h133.34q11.33 0 19-8 7.66-8 7.66-18.67 0-11.33-7.66-19-7.67-7.67-19-7.67H613.33q-10.66 0-18.66 7.67t-8 18.67q0 11 8 19t18.66 8Zm-426.66-480v-53.34 53.34Zm400 0v-53.34 53.34Zm-400 240v-53.34 53.34Zm400 0v-53.34 53.34Zm-400 240v-53.34 53.34Zm400 0v-53.34 53.34Z"/></svg>
+        </button>
+        <span>Espetos</span>
+    </div>
+    <div>
+        <button onclick="mostrarSecao('especiais')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="M246.67-40v-366.67h-93.34q-39.2 0-66.26-27.09Q60-460.85 60-500.09q0-39.24 27.07-66.24 27.06-27 66.26-27h93.34v-53.34h-93.34q-39.2 0-66.26-27.09Q60-700.85 60-740.09q0-39.24 27.07-66.24 27.06-27 66.26-27h93.34V-920h66.66v86.67h93.34q39.2 0 66.26 27.09Q500-779.15 500-739.91q0 39.24-27.07 66.24-27.06 27-66.26 27h-93.34v53.34h93.34q39.2 0 66.26 27.09Q500-539.15 500-499.91q0 39.24-27.07 66.24-27.06 27-66.26 27h-93.34V-40h-66.66Zm-93.34-433.33h253.34q11.33 0 19-7.67 7.66-7.67 7.66-19t-7.66-19q-7.67-7.67-19-7.67H153.33q-11.33 0-19 7.67-7.66 7.67-7.66 19t7.66 19q7.67 7.67 19 7.67Zm0-240h253.34q11.33 0 19-7.67 7.66-7.67 7.66-19t-7.66-19q-7.67-7.67-19-7.67H153.33q-11.33 0-19 7.67-7.66 7.67-7.66 19t7.66 19q7.67 7.67 19 7.67ZM600-40v-66.67h86.67v-298q-55.67-12-91.17-55.51T560-560v-360h320v360q0 56.33-35.5 99.83t-91.17 55.5v298H840V-40H600Zm120-426.67q39 0 66.17-27.16Q813.33-521 813.33-560v-93.33H626.67V-560q0 39 27.16 66.17Q681-466.67 720-466.67Zm-93.33-240h186.66v-146.66H626.67v146.66Zm-500 233.34v-53.34 53.34Zm0-240v-53.34 53.34Zm593.33 60Z"/></svg>
+        </button>
+        <span>Espetos especiais</span>
+    </div>
+    <div>
+        <button onclick="mostrarSecao('acompanhamento')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="M146.67-120 80-186.67h800L813.33-120H146.67ZM120-240.67q5.33-17.33 16-31.66 10.67-14.34 24-27v-315.34h-40V-668h40v-32.67h-40V-754h40v-32.67h-40V-840h286.67q27.5 0 47.08 19.58 19.58 19.59 19.58 47.09V-754H840v53.33H473.33v19.34q0 27.5-19.58 47.08t-47.08 19.58h-90v262q18.66 2 35.66 8.67 17 6.67 32.34 18.67 20-67.67 77-107.5 57-39.84 128-39.84 88.66 0 149.5 62.84Q800-347 800-258.67v18H120Zm331.33-66.66H724Q711.67-352 674.33-379q-37.33-27-84.66-27-48 0-87 26.33-39 26.34-51.34 72.34ZM316.67-754h96.66v-32.67h-96.66V-754Zm0 86h96.66v-32.67h-96.66V-668Zm-103.34-86h50v-32.67h-50V-754Zm0 86h50v-32.67h-50V-668Zm0 331.33q11.34-7.66 23.84-11.83t26.16-5.5v-260.67h-50v278ZM588-307.33Z"/></svg></button>
+        <span>Acompanhamento</span>
+    </div>
+    <div>
+        <button onclick="mostrarSecao('petiscos')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="m168.33-120-46.66-46.67 416.66-416.66q-20.66-46-8.33-98t57-96q47.67-47 112-58.34Q763.33-847 804.33-806 846-764.33 834-700.67 822-637 773-587.33q-41.33 42.66-92.67 55.66-51.33 13-94.66-5.66L524.33-476l309.34 309.33L787-120 477.67-428.67 168.33-120ZM291-468 171.67-587.33q-52-52-53.34-123.67Q117-782.67 167-836.67L413-590 291-468Z"/></svg></button>
+        <span>Petiscos</span>
+    </div>
+    <div>
+
+        <button onclick="mostrarSecao('bebidas')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="M120-80v-66.67h78.67v-136.66q-35-10.67-56.84-39.84Q120-352.33 120-390.67V-720h224v329.33q0 36.34-21.83 66.5-21.84 30.17-56.84 40.84v136.66H344V-80H120Zm66.67-426h90.66v-147.33h-90.66V-506ZM232-345.33q18.33 0 31.83-13.5t13.5-31.84v-48.66h-90.66v48.66q0 18.34 13.5 31.84t31.83 13.5ZM520-80q-27 0-46.83-19.83-19.84-19.84-19.84-46.84V-546q0-22 12.34-36.83 12.33-14.84 33.66-23.84l38-16q20.67-9 30.34-22.83 9.66-13.83 9.66-33.83v-164q0-16.34 10.17-26.5Q597.67-880 614-880h102.67q16.33 0 26.5 10.17 10.16 10.16 10.16 26.5v164q0 20 11.34 33.83 11.33 13.83 32 22.83l38 16q20.66 8.34 33 23.5Q880-568 880-546v399.33q0 27-19.83 46.84Q840.33-80 813.33-80H520Zm124-690.67h42.67v-42.66H644v42.66ZM520-470h293.33v-76l-40.66-15.33Q733.33-576 710-608.67q-23.33-32.66-23.33-72.66V-704H644v22.67q0 40-22.33 70.66Q599.33-580 561.33-564L520-546v76Zm0 323.33h293.33V-242H520v95.33Zm0-162h293.33v-94.66H520v94.66ZM232-439.33Zm288 130.66v-94.66 94.66Z"/></svg></button>
+        <span>Bebidas</span>
+    </div>
+    <div>
+
+        <button onclick="mostrarSecao('sucos')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="M444-606.67q-58.33 0-115.33 18.17t-104 51.83l43.33 390h424l46-420h-41.33q-37.34 0-68.34-5.36-31-5.37-85-20.97-24.33-7-49-10.33-24.66-3.34-50.33-3.34Zm-227.33-3.66q51-30.34 109.5-46.34 58.5-16 118.16-16.66 30 0 59.5 4t57.17 12q50.75 14 77.65 19 26.9 5 57.35 5h49.67l19.66-180H194.67l22 203Zm51 530.33Q242-80 222.94-96.62q-19.06-16.62-21.61-42.38L120-880h720l-81.33 741q-2.54 25.76-21.61 42.38Q718-80 692.33-80H267.67ZM444-146.67h248-424 176Z"/></svg></button>
+        <span>Sucos</span>
+    </div>
+    <div>
+
+        <button onclick="mostrarSecao('cervejas')"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#F3F3F3"><path d="M313.33-186.67h293.34v-420H520q-28 0-46.67 15-18.66 15-43 42-24 26.67-53.5 49.17t-63.5 31.5v282.33ZM246.67-120v-350q-52-14-89.34-54Q120-564 120-620q0-53 30.5-94.33 30.5-41.34 78.5-57.34 23-48 68.5-78t102.5-30q35 0 65.5 12T521-835q10-2 19-3.5t20-1.5q66 0 113 47t47 113q0 22-7.83 43.33-7.84 21.34-20.84 36.67h82q27.67 0 47.17 19.5t19.5 47.17v266.66q0 27.67-19.5 47.17T773.33-200h-100v80H246.67Zm-60-500q0 36.33 28.5 61.5T280-533.33q32 0 56.83-18.67 24.84-18.67 50.84-49.33 23.66-27.67 55.5-49.84Q475-673.33 520-673.33h133.33q0-41-25.5-70.5T560-773.33q-20.33 0-37.67 5.83L505-761.67 482-781q-15.67-13.67-36.83-22.83Q424-813 400-813q-34 0-64.17 17.67-30.16 17.66-44.83 48.66l-14 30-32 11q-25.67 8.67-42 33.5-16.33 24.84-16.33 52.17Zm486.66 353.33h100v-266.66h-100v266.66Zm-360 80H606.67 313.33Z"/></svg></button>
+        <span>Cervejas</span>
+    </div>
+
+
+
+    </div>
+
+
+
+
+    <!---------------MENU FIXO -------------->
+
+
+
+    <!---------------INICIO  CARRINHO -------------->
+
+    <div class="overlay-carrinho" id="overlay-carrinho"></div>
+    <div id="menu-carrinho" class="menu-carrinho">
+        <div id="fechar-carrinho">
+            <a href="#"><i class="bi bi-x-lg"></i></a>
+        </div>
+
+        <h3>Itens no Carrinho</h3>
+        <div id="carrinho-itens"></div>
+        <p id="valor-total">Total: R$ 0,00</p>
+        <div>
+            <label for="endereco-cliente">Seu nome:</label>
+            <input class="nome-input" id="nome-cliente" placeholder="Digite seu nome..." rows="4"></input>
+        </div>
+        <div>
+            <label for="forma-pagamento">Forma de pagamento:</label>
+            <form id="formPagamento">
+                <label><input type="radio" name="pagamento" value="pix"> Pix</label>
+                <label><input type="radio" name="pagamento" value="cartao"> Cartão</label>
+                <label><input type="radio" name="pagamento" value="dinheiro" id="dinheiro"> Dinheiro</label> 
+            </form>
+          
+        </div>
+        <div id="troco" style="display: none;">
+            <label>Valor pago: </label><input type ='number' id= "valorPago" name="valorPago" placeholder = "Digite o valor">
+            </div>
+            <div onclick="copiarChave(this)" id="chavePix" class="copiar-chave" style="display: none;" value="06740816336">
+                Clique para copiar a chave.
+                </div>
+    
+
+        <div>
+            <label for="endereco-cliente">Seu endereço:</label>
+            <textarea class="ende-obs" id="endereco-cliente" placeholder="Digite seu endereço  e referência..."
+                rows="2"></textarea>
+        </div>
+        <div>
+            <label for="observaçoes">Observações:</label>
+            <textarea class="ende-obs" id="obs-cliente"
+                placeholder="Digite sua observação..." rows="2"></textarea>
+        </div>
+        <p id="taxa-entrega" style="font-size: 10px;">Custo de entrega: R$ 2.00</p>
+
+        <button onclick="finalizarCompra()" id="finalizar-compra">Finalizar Compra</button>
+        <p class="dev">Desenvolvido por MM TecSolutions</p>
+    </div>
+    <p class="mensagem" id="mensagem-carrinho">Adicionado com sucesso!🌮</p>
+    <button id="abrir-carrinho" class="btn-toggle-carrinho">Ver pedido<span class="cart-count"></span></button>
+    <!---------------FIM  CARRINHO -------------->
+
+    <!---------------INICIO MODAL -------------->
+    <div id="overlay-modal"></div>
+
+    <div class="modal" id="modal">
+        <i id="fechar-modal" class="bi bi-x-lg"></i>
+        <div class="card-modal" id="card-modal">
+            <div class="modal-img">
+                <img src="img/semnada.png" alt="img" class="card-image">
+
+            </div>
+            <div class="informativo">
+                <div class="title-modal">
+                    <h3 class="card-title">Titulo</h3>
+                </div>
+                <p class="card-description">Texto detalhado</p>
+                <form id="form-modal" action="/submit" method="post">
+
+                    <legend>Escolha o ponto do seu espetinho 😋</legend>
+                    <div class="label-form">
+                        <div>
+                            <label for="mal-passada">Mal passado</label>
+                            <input type="radio" id="mal-passada" name="pontoCarne" value="mal_passado" required>
+
+                        </div>
+
+                        <div>
+                            <label for="ao-ponto">Ao Ponto</label>
+                            <input type="radio" id="ao-ponto" name="pontoCarne" value="ao_ponto">
+
+                        </div>
+
+                        <div>
+                            <label for="bem-passada">Bem Passado</label>
+                            <input class="radio" type="radio" id="bem-passada" name="pontoCarne" value="bem_passado">
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="price-modal">
+                    <p class="card-price"></p>
+                    <span class="decrease">-</span> <span id="contador">1</span><span class="increase">+</span>
+                    <a type="submit" id="btn-addModal"><i class="fa-solid fa-square-plus"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!---------------FIM  MODAL-------------->
+
+    <!---------------INICIO  HAMBURGUER -------------->
+
+
+    <section id="espetos">
+        <h1>Espetos</h1>
+        <div id="aparecer" class="card-interface">
+            <!---------------INICIO  BLOCO 1-------------->
+            <div class="bloco">
+                <div class="sub-bloco"> <!---------------INICIO  sub-BLOCO-------------->
+                    <div class="card">
+                        <div box-img>
+                            <img src="assets/img/frango.webp" alt="C" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Espetinho de frango</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                    <div class="card">
+                        <div box-img>
+                            <img src="assets/img/carne.webp" alt="" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Espetinho bovino</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$8,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card">
+                        <div>
+                            <img src="assets/img/porco.webp" alt="Classic Burger" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Espetinho suino</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$6,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                    <div class="card">
+                        <div box-img>
+                            <img src="assets/img/linguiça.webp" alt="" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Espetinho de linguiça</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                </div><!---------------FIM  sub-BLOCO 1-------------->
+            </div>
+
+            <!---------------FIM  BLOCO 1-------------->
+
+            <!---------------INICIO  BLOCO 2-------------->
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card ">
+                        <div box-img>
+                            <img src="assets/img/coração.webp" alt="Classic Burger" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Espetinho de coração</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$6,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                    <div class="card cor-hamburguer">
+                        <div box-img>
+                            <img src="assets/img/especial3.webp"
+                                alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Espetinho misto</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$6,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                </div>
+                <!-- <div class="sub-bloco">
+                    <div class="card cor-hamburguer">
+                        <div box-img>
+                            <img src="img/hamburguer-de-carne-em-um-restaurante_7939-1855.jpg" alt="Classic Burger"
+                                class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Burger G</h3>
+                            <p class="card-description">Pão macio, hambúrguer suculento, queijo derretido, alface e
+                                tomate.</p>
+                            <p class="card-price">R$ 16,90</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                    <div class="card cor-hamburguer">
+                        <div box-img>
+                            <img src="img/hamburguer-de-carne-em-um-restaurante_7939-1856.jpg" alt="Classic Burger"
+                                class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Burger H</h3>
+                            <p class="card-description">Pão macio, hambúrguer suculento, queijo derretido, alface e
+                                tomate.</p>
+                            <p class="card-price">R$ 19,90</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                </div> -->
+            </div>
+            <!---------------FIM  BLOCO 2-------------->
+
+            <!---------------INICIO  BLOCO 3-------------->
+          
+            <!---------------FIM BLOCO 3-------------->
+
+            <!---------------INICIO  BLOCO 4-------------->
+           
+            <!---------------INICIO  BLOCO 4-------------->
+    </section>
+
+    <!---------------FIM  HAMBURGUER -------------->
+
+    <!---------------INICIO  ESPECIAIS -------------->
+
+    <section id="especiais">
+        <h1>Espetos Especiais</h1>
+        <div class="card-interface">
+
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card ">
+                        <div box-img>
+                            <img src="assets/img/especial1.webp" alt="Classic Burger" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Especial bovino</h3>
+                            <p class="card-description">Acompanha farofa, vinagrete</p>
+                            <p class="card-price">R$10,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                    <div class="card cor-hamburguer">
+                        <div box-img>
+                            <img src="assets/img/especial2.webp" alt="Classic Burger" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Especial frango</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$8,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card ">
+                        <div box-img>
+                            <img src="assets/img/especial3.webp" alt="" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Especial medalhão</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$9,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                    <div class="card">
+                        <div box-img>
+                            <img src="assets/img/especial4.webp" alt="Classic Burger" class="card-image">
+
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Especial suino</h3>
+                            <p class="card-description">Acompanha vinagrete e farofa</p>
+                            <p class="card-price">R$8,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            
+
+    </section>
+    <!---------------FIM  ESPECIAIS -------------->
+
+    <!---------------INICIO  ACOMPANHAMENTO -------------->
+    <section id="acompanhamento">
+        <h1>Acompanhamento</h1>
+        <div class="card-interface">
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card " data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/arroz a grega.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Arroz a grega</h3>
+                            <p class="card-description">Arroz soltinho com cenoura, pimentão e ervilha. Colorido e saboroso.</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-petiscos" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/arroz branco.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Arroz branco</h3>
+                            <p class="card-description">Arroz soltinho e leve, perfeito para qualquer refeição.</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card cor-petiscos" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/baiao cremoso.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Baião cremoso</h3>
+                            <p class="card-description">Baião de dois com toque cremoso, irreesistível e cheio de sabor.</p>
+                            <p class="card-price">R$8,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-petiscos" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/baiao.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Baião de dois</h3>
+                            <p class="card-description">Arroz e feijão com temperos nordestinos , saboroso e tradicional.</p>
+                            <p class="card-price">R$6,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+    <!---------------FIM  ACOMPANHAMNTO -------------->
+
+    <!---------------INICIO  PETISCOS -------------->
+
+    <section id="petiscos">
+        <h1>Petiscos</h1>
+        <div class="card-interface">
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/calabresa.jpeg" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Calabresa acebolada</h3>
+                            <p class="card-description">Linguiça calabresa frita, com cebola.</p>
+                            <p class="card-price">R$18,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/batata frita.jpeg" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Batata frita</h3>
+                            <p class="card-description">Porção de 400g de batata frita.</p>
+                            <p class="card-price">R$15,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/gurjão frango.jpeg"
+                                alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Gurjão de frango</h3>
+                            <p class="card-description">Filé de frango empanado e frito.</p>
+                            <p class="card-price">R$25,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/batata-frita-com-calabresa.jpg" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Batata frita com calabresa</h3>
+                            <p class="card-description">Batata frita com calabresa</p>
+                            <p class="card-price">R$20,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </section>
+
+    <!-- INICIO BEBIDAS -->
+
+    <section id="bebidas">
+        <h1>Bebidas</h1>
+        <div class="card-interface">
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/coca 2litros.avif" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Coca-cola 2L</h3>
+                            <p class="card-description">Coca-cola 2L</p>
+                            <p class="card-price">R$12,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/coca lata.png" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Coca-cola lata</h3>
+                            <p class="card-description">Coca-cola lata</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/coca zero lata.png"
+                                alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Coca-cola zero</h3>
+                            <p class="card-description">Coca-cola zero, lata</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/guarana 1 litro.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Guaraná 1L</h3>
+                            <p class="card-description">Guaraná 1L</p>
+                            <p class="card-price">R$8,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+            </div>
+            <h1>Cervejas</h1>
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/guarana 300ml.webp" alt="Cerveja" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Guaraná pequeno</h3>
+                            <p class="card-description">Guarana pequeno</p>
+                            <p class="card-price">R$3,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/guarana lata.webp" alt="Refrigerantes" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Guarana lata</h3>
+                            <p class="card-description">Guarana lata</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/fanta-laranja.jpeg" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Fanta laranja lata</h3>
+                            <p class="card-description">Fanta laranja</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/sprit-lata.png" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Sprite lata</h3>
+                            <p class="card-description">Sprite lata</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---------------FIM  BEBIDAS -------------->
+
+   <!--  INICIO SUCOS -->
+
+    <section id="sucos">
+        <h1>Sucos</h1>
+        <div class="card-interface">
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/suco abacaxi.avif" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Suco de abacaxi</h3>
+                            <p class="card-description">Suco natural de abacaxi</p>
+                            <p class="card-price">R$6,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/suco acerola.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Suco de acerola</h3>
+                            <p class="card-description">Suco natural de acerola</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/suco goiaba.avif"
+                                alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Suco de goiaba</h3>
+                            <p class="card-description">Suco natural de goiaba</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/suco laranja.avif" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Suco de laranja</h3>
+                            <p class="card-description">Suco natural de laranja</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!--   FIM SUCOS -->
+
+   <!--  INICIO CERVEJAS -->
+
+      <section id="cervejas">
+        <h1>Cervejas</h1>
+        <div class="card-interface">
+            <div class="bloco">
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/brama 350.png" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Brahma 350ml</h3>
+                            <p class="card-description">Brahma</p>
+                            <p class="card-price">R$5,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/brama 600.png" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Brahma chopp 600ml</h3>
+                            <p class="card-description">Brahma 600ml</p>
+                            <p class="card-price">R$10,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+                <div class="sub-bloco">
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/heiniken long.jpg"
+                                alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Heineken long neck</h3>
+                            <p class="card-description">Heineken long neck</p>
+                            <p class="card-price">R$10,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+
+                    <div class="card cor-bebidas" data-category="bebida-petisco">
+                        <div box-img>
+                            <img src="assets/img/spaten 600.webp" alt="" class="card-image">
+                        </div>
+                        <div class="informativo">
+                            <h3 class="card-title">Spaten 600ml</h3>
+                            <p class="card-description">Spaten 600ml</p>
+                            <p class="card-price">R$12,00</p>
+                        </div>
+                        <a onclick="addContador()" class="btn-add"><i class="fa-solid fa-square-plus"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- FIM CERVEJAS -->
+
+    <!---------------INICIO  FOOTER -------------->
+    <footer>
+        <div class="div-footer">
+            <div>
+                <p class="info">Telefone: (88) 981252883 </p>
+                <p class="info">E-mail: contato@empresa.com</p>
+                <p class="info">Endereço: Sussuanha, Guaraciaba do Norte, Ce</p>
+
+                <button class="btd-footer"> <a href="https://www.instagram.com" target="_blank"><i
+                            class="fab fa-instagram"></i></a> </button>
+
+                <button class="btd-footer"> <a
+                        href="https://wa.me/5588981252883?text=Olá,%20preciso%20de%20informações." target="_blank"><i
+                            class="bi bi-whatsapp"></i></a></button>
+            </div>
+            <div class="div-logofooter">
+                <img class="logo-footer" src="assets/img/logo.jpg" alt="">
+               
+                <p class="criador">Este cardápio foi desenvolvido por:<br><a
+                    href="https://wa.me/5588981252883?text=Olá,gostaria%20de%20solicitar%20um%20orçamento."
+                    target="_blank">MM TecSolutions</a></p>
+
+            </div>
+        </div>
+        
+    </footer>
+
+
+
+
+
+    <!-------------- FIM  FOOTER -------------->
+
+    <!---------------SCRIPTS -------------->
+
+    <script src="assets/script/funcoes_principais.js"></script>
+    <script src="assets/script/abrir_carrinho.js"></script>
+    <script src="assets/script/exibir_mensagem.js"></script>
+    <script src="assets/script/exibir_secoes.js"></script>
+    <!-- <script src="adiciona_carrinho.js"></script> -->
+    <script src="assets/script/abrir_menu.js"></script>
+
+    <!---------------SCRIPTS -------------->
+
+</body>
+
+</html>
