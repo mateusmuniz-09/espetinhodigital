@@ -35,7 +35,8 @@ clikCard.forEach((card) => {
     const categoria = card.getAttribute("data-category");
     const pontoCarne = document.getElementById("form-modal");
 
-    pontoCarne.style.opacity = categoria === "bebida-petisco" ? "0" : "1";
+    pontoCarne.style.display =
+      categoria === "bebida-petisco" ? "none" : "block";
 
     if (pontoCarne.style.opacity === "0") {
       pontoCarne.style.pointerEvents = "none";
