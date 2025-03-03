@@ -244,13 +244,13 @@ function enviarParaWhatsapp() {
 
   let trocado = 0;
 
-  let mensagem = `👋 Olá *BigBurguer*! Vim pelo seu cardápio online: https://cardapiodigitalburguer.netlify.app/ 🍔😋\n\n`;
-  mensagem += `📦 *Meu pedido:* \n\n`;
+  let mensagem = `👋 Olá *Borcelle*! Vim pelo seu cardápio online: https://cardapioespetinho.netlify.app/ 🍢😋\n\n`;
+  mensagem += `🍛 *Meu pedido:* \n\n`;
 
   let valorTotal = 0;
   let totalPagar = 0;
   carrinho.forEach((item) => {
-    mensagem += `🍔 *${item.nome}*- ${
+    mensagem += `🍢 *${item.nome}*- ${
       item.pontoCarne ? " (" + item.pontoCarne.replace("_", " ") + ")" : ""
     } \n`;
     mensagem += `   - *Quantidade:* ${item.quantidade}\n`;
@@ -279,7 +279,7 @@ function enviarParaWhatsapp() {
   }
   mensagem += `📝 *Dados do Cliente:*\n`;
   mensagem += `👤 *Nome:* ${nomeCliente}\n`;
-  mensagem += `📍 *Endereço:* ${enderecoCliente}\n`;
+  mensagem += `📌 *Endereço:* ${enderecoCliente}\n`;
   mensagem += `💳 *Forma de Pagamento:* ${metodoPagamento}\n`;
   mensagem += `✍️ *Observação:* ${obsCliente ? obsCliente : "Nenhuma"}\n\n`;
   mensagem += `⏳ _Nosso tempo médio de espera é de 20 min! Rapidinho chega até você!_ 🛵💨`;
@@ -296,11 +296,11 @@ function enviarParaWhatsapp() {
 
 function finalizarCompra() {
   if (horas < 18 || horas >= 23) {
-    alert("⚠️ Estamos fechados no momento, aguardamos por você em breve.");
-    return false;
+    alert("⚠️ Estamos fechados no momento, aguardamos por você em breve😉");
+    /* return false; */
   }
   if (carrinho.length === 0) {
-    alert("⚠️ Seu carrinho está vazio.");
+    alert("⚠️ Seu carrinho está vazio😐");
     return;
   }
 
