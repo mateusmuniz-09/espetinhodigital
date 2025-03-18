@@ -12,7 +12,16 @@ const increase = document.querySelector(".increase");
 const decrease = document.querySelector(".decrease");
 const btnAdicionar = document.getElementById("btn-addModal"); // Botão de adicionar ao carrinho
 const carrinhoItens = document.getElementById("carrinho-itens");
-const totalCarrinho = document.getElementById("valor-total");
+const totalCarrinho = document.getElementById("valor-total-item");
+const total = document.getElementById("valor-total");
+const SpanTroco = document.getElementById("troco-span");
+
+let totalParapagar = 0;
+let valorTotal = 0;
+let totalPagar = 0;
+let somarTaxa = 0;
+let trocado = 0;
+
 let contador = document.querySelector(".cart-count");
 let data = new Date();
 let horas = data.getHours();
@@ -146,23 +155,46 @@ btnAdicionar.addEventListener("click", () => {
 // Atualiza a interface do carrinho
 function atualizarCarrinho() {
   carrinhoItens.innerHTML = "";
+
   let valorTotal = 0;
+  let taxaTexto = document.getElementById("taxa-entrega").innerText; // Pega o texto completo
+  let taxaEntrega = parseFloat(taxaTexto.match(/\d+(\.\d+)?/)[0]); // Extrai o número e converte para float
+  let valorRecebido = document.getElementById("valorPago").value;
+  if (isNaN(valorRecebido) || valorRecebido === "") {
+    valorRecebido = 0;
+  }
+  document.getElementById("valorPago").addEventListener("input", () => {
+    atualizarCarrinho(); // Atualiza o cálculo do troco em tempo real
+  });
 
   carrinho.forEach((item, index) => {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("item");
 
+    let detalhesItem = `Item: ${item.nome}`; // Sempre presente
+
+    if (item.pontoCarne) {
+      detalhesItem += `\nPonto: ${item.pontoCarne.replace("_", " ")}`;
+    }
+
+    detalhesItem += `\nSubtotal: R$ ${item.precoTotal.toFixed(2)}`;
+
     itemDiv.innerHTML = `
-           <span>${item.nome}${
-      item.pontoCarne ? " (" + item.pontoCarne.replace("_", " ") + ")" : ""
-    } - R$ ${item.precoTotal.toFixed(2)} (qtde: ${item.quantidade})</span>
-            <button class="menosQuantidade" data-index="${index}">-</button>
-            <button class="maisQuantidade" data-index="${index}">+</button>
-        `;
+           <span class="item-info">${detalhesItem}</span>
+    <button class="menosQuantidade" data-index="${index}">-</button>
+   ${item.quantidade}
+    <button class="maisQuantidade" data-index="${index}">+</button>
+`;
 
     carrinhoItens.appendChild(itemDiv);
     valorTotal += item.precoTotal;
 
+    totalParapagar = valorTotal + taxaEntrega;
+    if (valorRecebido >= totalParapagar) {
+      trocado = valorRecebido - totalParapagar;
+    } else {
+      trocado = 0; // Se for menor, mantém zerado
+    }
     event.stopPropagation();
   });
 
@@ -175,7 +207,11 @@ function atualizarCarrinho() {
     contador.classList.add("cartCount");
   }
 
-  totalCarrinho.textContent = `Total: R$ ${valorTotal.toFixed(2)}`;
+  totalCarrinho.textContent = `Subtotal: R$ ${valorTotal.toFixed(2)}`;
+
+  total.textContent = `Total a pagar: R$ ${totalParapagar.toFixed(2)}`;
+
+  SpanTroco.textContent = `R$: ${trocado.toFixed(2)}`;
 
   document.querySelectorAll(".maisQuantidade").forEach((button) => {
     button.addEventListener("click", () =>
@@ -211,88 +247,57 @@ function enviarParaWhatsapp() {
     .value.trim();
   const nomeCliente = document.getElementById("nome-cliente").value.trim();
   const obsCliente = document.getElementById("obs-cliente").value.trim();
-  let pagamentoSelecionado = document.querySelector(
+  const pagamentoSelecionado = document.querySelector(
     'input[name="pagamento"]:checked'
   );
 
-  // Verificações antes de enviar
-  if (!nomeCliente) {
-    alert("⚠️ Por favor, preencha seu nome antes de finalizar a compra.");
-    return false;
-  }
-  if (!enderecoCliente) {
-    alert("⚠️ Por favor, preencha seu endereço antes de finalizar a compra.");
-    return false;
-  }
-  if (!pagamentoSelecionado) {
-    alert("⚠️ Por favor, selecione a forma de pagamento.");
+  if (!nomeCliente || !enderecoCliente || !pagamentoSelecionado) {
+    alert(
+      "⚠️ Preencha todos os campos obrigatórios antes de finalizar a compra."
+    );
     return false;
   }
 
   let metodoPagamento = pagamentoSelecionado.value;
-  let valorRecebido = document.getElementById("valorPago").value;
-
-  let valorformatado = parseFloat(valorRecebido);
-  if (
-    isNaN(valorformatado) ||
-    metodoPagamento === "cartao" ||
-    metodoPagamento === "pix"
-  ) {
-    valorformatado = "0.00";
-  } else {
-    valorformatado = valorformatado.toFixed(2);
-  }
-
-  let trocado = 0;
+  let valorRecebido =
+    parseFloat(document.getElementById("valorPago").value) || 0;
+  let valorformatado =
+    metodoPagamento === "dinheiro" ? valorRecebido.toFixed(2) : "0.00";
 
   let mensagem = `👋 Olá *Borcelle*! Vim pelo seu cardápio online: https://cardapioespetinho.netlify.app/ 🍢😋\n\n`;
   mensagem += `🍛 *Meu pedido:* \n\n`;
 
-  let valorTotal = 0;
-  let totalPagar = 0;
   carrinho.forEach((item) => {
-    mensagem += `🍢 *${item.nome}*- ${
-      item.pontoCarne ? " (" + item.pontoCarne.replace("_", " ") + ")" : ""
-    } \n`;
+    mensagem += `🍢 *${item.nome}* ${
+      item.pontoCarne ? `(${item.pontoCarne.replace("_", " ")})` : ""
+    }\n`;
     mensagem += `   - *Quantidade:* ${item.quantidade}\n`;
     mensagem += `   - *Preço unitário:* R$ ${item.preco.toFixed(2)}\n`;
     mensagem += `   - *Subtotal:* R$ ${item.precoTotal.toFixed(2)}\n\n`;
-    valorTotal += item.precoTotal;
-
-    totalPagar = valorTotal + taxaEntrega;
-
-    trocado = valorformatado - totalPagar;
   });
-  if (
-    metodoPagamento !== "cartao" &&
-    metodoPagamento !== "pix" &&
-    valorformatado < totalPagar
-  ) {
-    alert("⚠️ O Valor inserido é insuficiente!");
-    return; // Interrompe a função para evitar envio do pedido incorreto
-  }
 
   mensagem += `   - *Taxa de entrega:* R$ ${taxaEntrega.toFixed(2)}\n`;
-  mensagem += `💰 *Total do Pedido:* R$ ${totalPagar.toFixed(2)}\n\n`;
-  if (metodoPagamento !== "cartao" && metodoPagamento !== "pix") {
+  mensagem += `💰 *Total do Pedido:* R$ ${totalParapagar.toFixed(2)}\n\n`;
+
+  if (metodoPagamento === "dinheiro") {
     mensagem += `💰 *Valor pago:* R$ ${valorformatado}\n`;
-    mensagem += `💰 *Troco:* R$ ${trocado.toFixed(2)}\n\n`;
+    mensagem += `💰 *Troco:* R$ ${trocado}\n\n`;
   }
+
   mensagem += `📝 *Dados do Cliente:*\n`;
   mensagem += `👤 *Nome:* ${nomeCliente}\n`;
   mensagem += `📌 *Endereço:* ${enderecoCliente}\n`;
   mensagem += `💳 *Forma de Pagamento:* ${metodoPagamento}\n`;
-  mensagem += `✍️ *Observação:* ${obsCliente ? obsCliente : "Nenhuma"}\n\n`;
+  mensagem += `✍️ *Observação:* ${obsCliente || "Nenhuma"}\n\n`;
   mensagem += `⏳ _Nosso tempo médio de espera é de 20 min! Rapidinho chega até você!_ 🛵💨`;
 
-  // Codificar  os caracteres especiais e emojis
-  const numeroWhatsapp = "5588981252883";
+  const numeroWhatsapp = "5588981252883"; // Certifique-se que o número está correto
   const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(
     mensagem
   )}`;
 
   window.open(url, "_blank");
-  return true; // Indica sucesso
+  return true;
 }
 
 function finalizarCompra() {
@@ -338,10 +343,10 @@ let pix = document.getElementById("chavePix");
 opcoesPagamento.forEach((opcao) => {
   opcao.addEventListener("change", () => {
     if (opcao.value === "dinheiro") {
-      troco.style.display = "block";
+      troco.style.display = "flex";
       pix.style.display = "none";
     } else if (opcao.value === "pix") {
-      pix.style.display = "block";
+      pix.style.display = "flex";
       troco.style.display = "none";
     } else {
       troco.style.display = "none";

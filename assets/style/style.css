@@ -99,6 +99,7 @@ header {
 }
 
 .menu-desktop {
+    display: none;
     padding: 30px 20%
 }
 
@@ -358,7 +359,7 @@ header {
 }
 
 .menu-carrinho {
-
+white-space: nowrap;
     display: flex;
     text-align: center;
     align-items: center;
@@ -375,13 +376,13 @@ header {
     z-index: 100000;
     background-color: #fff;
     overflow-y: auto;
-    transition: .5s;
+    transition: .2s;
 }
 
 .menu-carrinho.ativo {
     padding: 20px 4%;
     display: block;
-    width: 40%;
+    width: 30%;
     z-index: 1600;
     overflow-x: hidden;
     overflow-y: auto;
@@ -397,7 +398,7 @@ header {
 }
 
 .menu-carrinho.ativo h3 {
-    font-size: 30px;
+    font-size: 20px;
 }
 .menu-carrinho.ativo .dev {
     position: relative;
@@ -442,12 +443,12 @@ header {
     justify-content: center;
     text-align: center;
     align-items: center;
-
+    font-weight: bolder;
     width: 30px;
     height: 20px;
-    background-color: #000000ad;
+    background-color: transparent;
     border-radius: 10px;
-    color: #ffffff;
+    color: #000;
     font-size: 20px;
     border: none;
 
@@ -459,20 +460,29 @@ header {
     justify-content: center;
     text-align: center;
     align-items: center;
-
+    background-color: transparent;
     width: 30px;
     height: 20px;
-    background-color: #000000ad;
     border-radius: 10px;
-    color: #ffffff;
+    color: #000;
     font-size: 20px;
+    font-weight: bolder;
     border: none;
 
 
 
 }
+.item-info {
+    white-space: pre-line;
+    
+    padding: 5px;
+    
+}
+
 
 #carrinho-itens {
+    border-top: 1px solid #0000009d;
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -486,17 +496,37 @@ header {
     gap: 5px;
 }
 
+#valor-total-item {
+    border-top: 1px solid #0000009d;
+
+    padding: 5px 20px;
+    font-weight: 500;
+    display: block;
+    text-align: left;
+    margin-left: 20%;
+}
+
+
 #valor-total {
 
-    padding: 5px 0;
-    border-radius: 10px;
-    font-weight: bolder;
-    height: 60px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 5px 20px;
+    font-weight: 700;
+    display: block;
+    text-align: left;
+    margin-left: 20%;
+    border-bottom: 1px solid #0000009d;
 }
+
+#taxa-entrega{
+    padding: 5px 20px;
+    font-size: 15px;
+    font-weight: 400;
+    display: block;
+    text-align: left;
+    margin-left: 20%;
+}
+
+
 
 .menu-carrinho #fechar-carrinho {
 
@@ -629,22 +659,40 @@ label {
 
 #troco{
 display: flex;
-flex-direction: column;
-
-
+flex: 1;
+align-items: center;
+justify-content: center;
+padding: 10px 10px;
+gap: 5px;
 }
-#troco input[type ="number"]{
+#troco label{
+    font-size: 15px;
+}
+
+#troco-span{
     font-size: 12px;
+    width: 90px;
     cursor: pointer;
     align-items: center;
     border-radius: 5px;
     transition: 0.3s;
     margin: 0;
-    gap: 5px;
     padding: 8px 5px;
     border: 1px solid #00000021;
     outline: none;
-    padding: 10px 5px;
+    text-align: center;
+}
+#troco input[type ="number"]{
+    font-size: 12px;
+    max-width: 100px;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin: 0;
+    padding: 8px 5px;
+    border: 1px solid #00000021;
+    outline: none;
     text-align: center;
 }
 #troco input[type ="number"]:focus {
@@ -1305,9 +1353,8 @@ input[type="number"]::-webkit-outer-spin-button {
         height: 100%;
         background-color: #fff;
         z-index: 100000;
-        background-color: #fff;
         overflow-y: auto;
-        transition: .5s;
+        transition: .2s;
     }
 
     .menu-carrinho.ativo {
@@ -1328,6 +1375,7 @@ input[type="number"]::-webkit-outer-spin-button {
     .menu-carrinho.ativo h3 {
         font-size: 20px;
         margin-bottom: 15px;
+        color: #b10407;
     }
 
 
@@ -1348,14 +1396,21 @@ input[type="number"]::-webkit-outer-spin-button {
         display: flex;
         gap: 5px;
     }
+    #valor-total-item {
+        margin-left: 0;
+    }
 
     #valor-total {
-        border-radius: 10px;
         font-weight: bolder;
         height: 60px;
-        text-align: center;
-        justify-content: center;
-        font-size: 1.3rem;
+        text-align: left;
+        justify-content: left;
+        font-size: 1.2rem;
+        margin-left: 0;
+    }
+    #taxa-entrega{
+        margin-left: 0;
+        font-size: 14px;
     }
 
 

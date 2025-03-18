@@ -122,7 +122,7 @@
 
 
 
-
+<span style="text-align: center; width: 100%;"></span>
     <!---------------MENU FIXO -------------->
 
 
@@ -137,7 +137,9 @@
 
         <h3>Itens no Carrinho</h3>
         <div id="carrinho-itens"></div>
-        <p id="valor-total">Total: R$ 0,00</p>
+        <p id="valor-total-item">Total itens: R$ 0,00</p>
+        <p id="taxa-entrega" >Custo de entrega: R$ 2.00</p>
+        <p id="valor-total">Total a pagar: R$ 0,00</p>
         <div>
             <label for="endereco-cliente">Seu nome:</label>
             <input class="nome-input" id="nome-cliente" placeholder="Digite seu nome..." rows="4"></input>
@@ -153,6 +155,7 @@
         </div>
         <div id="troco" style="display: none;">
             <label>Valor pago: </label><input type ='number' id= "valorPago" name="valorPago" placeholder = "Digite o valor">
+            <label>Troco: </label><span id="troco-span" aria-placeholder="Troco">0</span>
             </div>
             <div onclick="copiarChave(this)" id="chavePix" class="copiar-chave" style="display: none;" value="06740816336">
                 Clique para copiar a chave.
@@ -169,7 +172,6 @@
             <textarea class="ende-obs" id="obs-cliente"
                 placeholder="Digite sua observação..." rows="2"></textarea>
         </div>
-        <p id="taxa-entrega" style="font-size: 10px;">Custo de entrega: R$ 2.00</p>
 
         <button onclick="finalizarCompra()" id="finalizar-compra">Finalizar Compra</button>
         <p class="dev">Desenvolvido por MM TecSolutions</p>
